@@ -1,4 +1,3 @@
-
 import {loadGLTF} from 'https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/utils/loader.js';
 
 document.getElementById('start-button').addEventListener('click', async () => {
@@ -10,10 +9,13 @@ document.getElementById('start-button').addEventListener('click', async () => {
   const {renderer, scene, camera} = mindarThree;
   const anchor = mindarThree.addAnchor(0);
 
-  // Cylinder (330ml can size)
- const cylinderGeometry = new THREE.CylinderGeometry(0.04, 0.04, 0.15, 64); // Slightly wider and taller
+  // Cylinder with label texture
+  const cylinderGeometry = new THREE.CylinderGeometry(0.04, 0.04, 0.15, 64);
   const textureLoader = new THREE.TextureLoader();
   textureLoader.load('./assets/can-label.png', (texture) => {
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.ClampToEdgeWrapping;
+    texture.repeat.set(1, 1);
     const cylinderMaterial = new THREE.MeshBasicMaterial({ map: texture });
     const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
     cylinder.position.set(0, 0, 0);
@@ -29,13 +31,13 @@ document.getElementById('start-button').addEventListener('click', async () => {
   context.fillRect(0, 0, canvas.width, canvas.height);
   context.fillStyle = '#000000';
   context.font = '28px Arial';
-  context.fillText('Sparkling Water', 20, 100);
+  context.fillText('Product Info: Sparkling Water', 20, 100);
 
   const texture = new THREE.CanvasTexture(canvas);
   const panelGeometry = new THREE.PlaneGeometry(0.3, 0.15);
   const panelMaterial = new THREE.MeshBasicMaterial({map: texture, side: THREE.DoubleSide, transparent: true});
   const panel = new THREE.Mesh(panelGeometry, panelMaterial);
-  panel.position.set(0, 0.15, -0.15); // Behind and above the cylinder
+  panel.position.set(0, 0.2, -0.15);
   anchor.group.add(panel);
 
   await mindarThree.start();
