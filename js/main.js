@@ -17,15 +17,15 @@ document.getElementById('start-button').addEventListener('click', async () => {
     const {renderer, scene, camera} = mindarThree;
     const anchor = mindarThree.addAnchor(0);
 
-    // Cylinder with label texture (larger size)
-    const cylinderGeometry = new THREE.CylinderGeometry(0.12, 0.12, 0.4, 64);
+    // Cylinder with label texture (double size again)
+    const cylinderGeometry = new THREE.CylinderGeometry(0.24, 0.24, 0.8, 64);
     const textureLoader = new THREE.TextureLoader();
     textureLoader.load('./assets/can-label.png', (texture) => {
       const cylinderMaterial = new THREE.MeshBasicMaterial({ map: texture });
       const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
       cylinder.position.set(0, 0, 0);
       anchor.group.add(cylinder);
-      logMessage("Cylinder with texture added.");
+      logMessage("Large cylinder with texture added.");
 
       // Animate rotation
       renderer.setAnimationLoop(() => {
@@ -36,24 +36,25 @@ document.getElementById('start-button').addEventListener('click', async () => {
       logMessage("Error loading cylinder texture: " + err.message);
     });
 
-    // Info Panel with Text (scaled up)
+    // Info Panel with Text (scaled up again)
     const canvas = document.createElement('canvas');
-    canvas.width = 1024;
-    canvas.height = 512;
+    canvas.width = 2048;
+    canvas.height = 1024;
     const context = canvas.getContext('2d');
     context.fillStyle = '#ffffff';
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = '#000000';
-    context.font = '48px Arial';
-    context.fillText('Product Info: Sparkling Water', 40, 200);
+    context.font = '96px Arial';
+    context.fillText('Product Info: -196  Grapefruit', 80, 400);
+    context.fillText('Tasting notes: Crisp, citrusy finish', 80, 500);
 
     const panelTexture = new THREE.CanvasTexture(canvas);
-    const panelGeometry = new THREE.PlaneGeometry(0.6, 0.3); // doubled size
+    const panelGeometry = new THREE.PlaneGeometry(1.2, 0.6); // scaled up again
     const panelMaterial = new THREE.MeshBasicMaterial({map: panelTexture, side: THREE.DoubleSide, transparent: true});
     const panel = new THREE.Mesh(panelGeometry, panelMaterial);
-    panel.position.set(0, 0.4, -0.2); // positioned above and behind the larger can
+    panel.position.set(0, 0.8, -0.4); // positioned above and behind the larger can
     anchor.group.add(panel);
-    logMessage("Info panel added.");
+    logMessage("Large info panel added.");
 
     await mindarThree.start();
     logMessage("MindAR started successfully.");
