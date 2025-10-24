@@ -1,5 +1,3 @@
-import {loadGLTF} from 'https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/utils/loader.js';
-
 function logMessage(message) {
   const logBox = document.getElementById('log-box');
   const entry = document.createElement('div');
@@ -23,9 +21,6 @@ document.getElementById('start-button').addEventListener('click', async () => {
     const cylinderGeometry = new THREE.CylinderGeometry(0.04, 0.04, 0.15, 64);
     const textureLoader = new THREE.TextureLoader();
     textureLoader.load('./assets/can-label.png', (texture) => {
-      texture.wrapS = THREE.RepeatWrapping;
-      texture.wrapT = THREE.ClampToEdgeWrapping;
-      texture.repeat.set(1, 1);
       const cylinderMaterial = new THREE.MeshBasicMaterial({ map: texture });
       const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
       cylinder.position.set(0, 0, 0);
