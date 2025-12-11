@@ -46,7 +46,7 @@ document.getElementById('start-button').addEventListener('click', async () => {
     const textureLoader = new THREE.TextureLoader();
 
     textureLoader.load(
-      './assets/alt-can-label.png',
+      './assets/can-label.png',
       (texture) => {
         // Color fidelity
         texture.encoding = THREE.sRGBEncoding;
@@ -102,7 +102,8 @@ document.getElementById('start-button').addEventListener('click', async () => {
     context.font = '96px Arial';
     context.fillText('Product Info: -196 Grapefruit', 80, 400);
     context.fillText('Tasting notes: Crisp, citrusy finish', 80, 500);
-    context.fillText('Nick’s Recommendation: Strawberry — he LOVES it', 80, 600);
+    context.fillText('Nick’s Recommendation: Strawberry', 80,600);
+    context.fillText('He LOVES it', 80, 700);
 
     const panelTexture = new THREE.CanvasTexture(canvas);
     panelTexture.encoding = THREE.sRGBEncoding; // crucial for non-washed-out text
