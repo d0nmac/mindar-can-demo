@@ -1,6 +1,6 @@
 
 // --- Minimal, self-contained WebXR Surface Detection demo ---
-import * as THREE from 'three';
+
 
 const container = document.querySelector('#mindar-container'); // reuse your container
 
