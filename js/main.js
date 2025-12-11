@@ -47,6 +47,7 @@ document.getElementById('start-button').addEventListener('click', async () => {
     context.font = '96px Arial';
     context.fillText('Product Info: -196  Grapefruit', 80, 400);
     context.fillText('Tasting notes: Crisp, citrusy finish', 80, 500);
+    context.fillText('Nicks Recomendation: Strawberry, he LOVES it', 80, 600);
 
     const panelTexture = new THREE.CanvasTexture(canvas);
     const panelGeometry = new THREE.PlaneGeometry(1.2, 0.6); // scaled up again
