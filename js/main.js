@@ -20,7 +20,7 @@ document.getElementById('start-button').addEventListener('click', async () => {
     // Cylinder with label texture (double size again)
     const cylinderGeometry = new THREE.CylinderGeometry(0.24, 0.24, 0.8, 64);
     const textureLoader = new THREE.TextureLoader();
-    textureLoader.load('./assets/can-label.png', (texture) => {
+    textureLoader.load('./assets/alt-can-label.png', (texture) => {
       const cylinderMaterial = new THREE.MeshBasicMaterial({ map: texture });
       const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
       cylinder.position.set(0, 0, 0);
